@@ -8,9 +8,9 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
 from homeassistant.helpers import event
+from homeassistant.components.light import ENTITY_ID_FORMAT
+from homeassistant.helpers.entity import generate_entity_id
 from .right_light import RightLight
-
-#TODO: Return supported features
 
 from . import DOMAIN
 
@@ -57,6 +57,7 @@ class OfficeLight(LightEntity):
         self._brightness = 0
         self._brightness_override = 0
         self._mode = "Off"
+        self.entity_id = generate_entity_id(ENTITY_ID_FORMAT, self._name, [])
 
         # Record whether a switch was used to turn on this light
         self.switched_on = False
@@ -125,6 +126,23 @@ class OfficeLight(LightEntity):
 #    @property
 #    def supported_color_modes(self) -> set[str] | None:
 #        return ['color_temp', 'xy']
+
+    @property
+    def device_info(self):
+        prop = {
+            "identifiers": {
+                # Serial numbers are unique identifiers within a specific domain
+                (DOMAIN, self.unique_id)
+            },
+            "name": self._name,
+            "manufacturer": "Aaron"
+        }
+        return prop
+
+    @property
+    def unique_id(self):
+        """Return the unique id of the light."""
+        return self.entity_id
 
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Instruct the light to turn on.
