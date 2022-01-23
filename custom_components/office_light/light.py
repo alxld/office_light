@@ -37,20 +37,13 @@ async def async_setup_platform(
         """A new MQTT message has been received."""
         await ent.switch_message_received(topic, payload, qos)
 
-    @callback
-    async def motion_sensor_message_received(topic: str, payload: str, qos: int) -> None:
-        """A new motion sensor MQTT message has been received"""
-        await ent.motion_sensor_message_received(topic, json.loads(payload), qos)
+#    @callback
+#    async def motion_sensor_message_received(topic: str, payload: str, qos: int) -> None:
+#        """A new motion sensor MQTT message has been received"""
+#        await ent.motion_sensor_message_received(topic, json.loads(payload), qos)
 
     await hass.components.mqtt.async_subscribe( "zigbee2mqtt/Office Switch/action", switch_message_received )
-    await hass.components.mqtt.async_subscribe( "zigbee2mqtt/Theater Motion Sensor", motion_sensor_message_received )
-
-
-class Modes(Enum):
-    NORMAL = 0
-    COLOR = 1
-    COLOR_TEMP = 2
-    RIGHT_LIGHT = 3
+#    await hass.components.mqtt.async_subscribe( "zigbee2mqtt/Theater Motion Sensor", motion_sensor_message_received )
 
 
 class OfficeLight(LightEntity):
@@ -214,15 +207,15 @@ class OfficeLight(LightEntity):
         self.switched_on = True
         if payload == "on-press":
             await self.async_turn_on()
-        elif payload == "on-hold":
-            await self.async_turn_on_mode(mode="Vivid")
+#        elif payload == "on-hold":
+#            await self.async_turn_on_mode(mode="Vivid")
         elif payload == "off-press":
             self.switched_on = False
             await self.async_turn_off()
         elif payload == "up-press":
             await self.up_brightness()
-        elif payload == "up-hold":
-            await self.async_turn_on_mode(mode="Bright")
+#        elif payload == "up-hold":
+#            await self.async_turn_on_mode(mode="Bright")
         elif payload == "down-press":
             await self.down_brightness()
         else:
