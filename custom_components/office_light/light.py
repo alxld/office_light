@@ -258,7 +258,7 @@ class OfficeLight(LightEntity):
         #_LOGGER.error(f"OFFICE_LIGHT ASYNC_TURN_ON: {kwargs}")
         if 'brightness' in kwargs:
             self._brightness = kwargs['brightness']
-        elif self._brightness = 0:
+        elif self._brightness == 0:
             self._brightness = 255
 
 #        def_br = 255 if self._brightness == 0 else self._brightness
