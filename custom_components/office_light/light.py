@@ -1,6 +1,9 @@
 """Platform for light integration"""
 from __future__ import annotations
 import sys
+from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
 
 from . import DOMAIN
 
