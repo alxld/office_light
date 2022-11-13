@@ -4,7 +4,7 @@ import sys
 
 from . import DOMAIN
 
-sys.path.append("custom_components/right_light")
+sys.path.append("custom_components/new_light")
 from new_light import NewLight
 
 
