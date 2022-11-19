@@ -34,4 +34,4 @@ class OfficeLight(NewLight):
         self.entities["light.office_group"] = None
         self.has_switch = True
         self.switch_action = "zigbee2mqtt/Office Switch/action"
-        super(OfficeLight, self).__init__(self._name, debug=False)
+        super(OfficeLight, self).__init__(self._name, debug=False, debug_rl=True)
