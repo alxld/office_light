@@ -30,8 +30,9 @@ class OfficeLight(NewLight):
 
     def __init__(self) -> None:
         """Initialize Office Light."""
-        self.name = "Office"
+        super(OfficeLight, self).__init__(
+            "Office", domain=DOMAIN, debug=False, debug_rl=False
+        )
         self.entities["light.office_group"] = None
         # self.has_switch = True
         self.switch = "Office Switch"
-        super(OfficeLight, self).__init__(self._name, debug=False, debug_rl=False)
