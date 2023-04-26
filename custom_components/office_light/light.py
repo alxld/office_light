@@ -35,4 +35,5 @@ class OfficeLight(NewLight):
         )
         self.entities["light.office_group"] = None
         # self.has_switch = True
-        self.switch = "Office Switch"
+        # self.switch = "Office Switch"
+        self.switch = "00:17:88:01:08:f4:4d:a6"
